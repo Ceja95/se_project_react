@@ -1,7 +1,11 @@
-import WTWR from "/src/images/Logo.png";
 
-React.DOM.render((
-    <>
-    <img src={WTWR} alt="WTWR Logo" />
-    </>
-))
+
+function Header() {
+        return (
+            <header>
+                Hello!
+            </header>
+        )
+}
+
+export default Header;
