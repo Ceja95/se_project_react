@@ -1,9 +1,17 @@
-
+import "./Header.css";
+import WTWR from "../../images/Logo.svg";
+import avatar from "../../images/avatar.png";
 
 function Header() {
         return (
-            <header>
-                Hello!
+            <header className="header">
+                <img className="header__logo" src={WTWR} alt="weather logo" />
+                <p className="header__date-and-location">Date, Location</p>
+                <button className="header__add-clothes-btn">+ Add clothes</button>
+                <div className="header__user-container">
+                    <p className="header__username">Terrence Tegegne</p>
+                    <img className="header__avatar" src={avatar} alt="Terrence Tegegne" />
+                </div>
             </header>
         )
 }
