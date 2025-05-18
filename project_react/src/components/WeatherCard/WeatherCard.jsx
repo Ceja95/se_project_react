@@ -1,20 +1,13 @@
 import "./WeatherCard.css";
+import cloudy from "../../images/cloudy.png";
 
 function WeatherCard() {
   return (
-    <div className="card">
-      <div className="card__info">
-        <p className="card__text">75F</p>
-        <div className="card__image">
-          <div className="card__cloud-left"></div>
-          <div className="card__cloud-middle"></div>
-          <div className="card__cloud-right"></div>
-          <div className="card__cloud-bottom"></div>
-           <div className="card__sun"></div>
-        </div>
-      </div>
-    </div>
-  );
+    <section className="weather-card">
+        <p className="weather-card__temp">75&deg;F</p>
+        <img src={cloudy} alt="cloudy" className="weather-card__img" />
+    </section>
+  )
 }
 
 export default WeatherCard;
