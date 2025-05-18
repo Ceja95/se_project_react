@@ -1,0 +1,48 @@
+.card{
+    background-color: #00A3FF;
+    border-radius: 12px;
+}
+
+.card__info{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__text{
+    margin: 20px 0 20px 16px;
+    font-family: "Cabinet Grotesk";
+    font-weight: 700;
+    font-size: 36px;
+    color: #FFFFFF;
+}
+
+.card__sun{
+    width: 60px;
+    height: 60px;
+    background-color: #FFE600;
+}
+
+.card__cloud-bottom{
+    width: 103px;
+    height: 40px;
+    background-color: #D9D9D9;
+}
+
+.card__cloud-left{
+    width: 56px;
+    height: 56px;
+    background-color: #D9D9D9;
+}
+
+.card__cloud-right{
+    width: 80px;
+    height: 80px;
+    background-color: #D9D9D9;
+}
+
+.card__cloud-middle{
+    width: 98px;
+    height: 98px;
+    background-color: #D9D9D9;
+}
