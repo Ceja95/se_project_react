@@ -38,6 +38,7 @@
     padding: 28px 28px 36px;
     background-color: #fff;
     border-radius: 20px;
+    box-sizing: border-box;
 }
 
 .modal__form{
@@ -87,10 +88,15 @@
     padding-top: 8px;
 }
 
+.modal__radio-input{
+    margin-right: 8px;
+}
+
 .modal__submit{
     width: 124px;
     height: 36px;
-    margin-top: 32px;
+    position: absolute;
+    bottom: 36px;
     background-color: #0000004D;
     border-radius: 4px;
     border: none;
