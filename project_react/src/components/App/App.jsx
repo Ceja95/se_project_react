@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import "../../vendor/fonts/fonts.css";
@@ -18,13 +18,30 @@ function App() {
     setActiveModal("");
   };
 
+  function closeOnOverlayClick(e) {
+    if (e.target.classList.contains("modal__opened")) {
+      closeActiveModal();
+    }
+
+    useEffect(() => {
+      if (activeModal == "") return;
+      document.addEventListener("mousedown", closeOnOverlayClick);
+      return document.removeEventListener("mousedown", closeOnOverlayClick);
+    }, [activeModal]);
+  }
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick= {handleAddClick} />
+        <Header handleAddClick={handleAddClick} />
         <Main weatherData={weatherData} />
       </div>
-      <ModalWithForm buttonText="Add garment" title="New garment" activeModal={activeModal} closeActiveModal={closeActiveModal}>
+      <ModalWithForm
+        buttonText="Add garment"
+        title="New garment"
+        activeModal={activeModal}
+        closeActiveModal={closeActiveModal}
+      >
         <label htmlFor="name" className="modal__label">
           Name
           <input
