@@ -19,19 +19,19 @@ function App() {
   };
 
   function closeOnOverlayClick(e) {
-    if (e.target.classList.contains("modal__opened")) {
+    if (e.target.classList.contains("modal_opened")) {
       closeActiveModal();
     }
-
-    useEffect(() => {
-      if (activeModal == "") return;
-      document.addEventListener("mousedown", closeOnOverlayClick);
-      return document.removeEventListener("mousedown", closeOnOverlayClick);
-    }, [activeModal]);
   }
 
+  useEffect(() => {
+    if (activeModal == "") return;
+    document.addEventListener("mousedown", closeOnOverlayClick);
+    return document.removeEventListener("mousedown", closeOnOverlayClick);
+  }, [activeModal]);
+
   return (
-    <div className="page">
+    <div onClick={closeOnOverlayClick} className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} />
         <Main weatherData={weatherData} />
@@ -41,6 +41,7 @@ function App() {
         title="New garment"
         activeModal={activeModal}
         closeActiveModal={closeActiveModal}
+        closeOnOverlayClick={closeOnOverlayClick}
       >
         <label htmlFor="name" className="modal__label">
           Name
