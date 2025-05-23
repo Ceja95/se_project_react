@@ -9,6 +9,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function App() {
   const [weatherData, setWeatherData] = useState({ type: "hot" });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
+
+  const handleCardClick = (e) => {
+    setActiveModal("preview");
+    setSelectedCard();
+  }
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -87,6 +93,7 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
     </div>
   );
 }

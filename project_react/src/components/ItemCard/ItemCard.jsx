@@ -1,5 +1,6 @@
 import { defaultClothingItems } from "../../utils/constants.js";
 import "./ItemCard.css";
+import ItemModal from "../ItemModal/ItemModal.jsx";
 
 function ItemCard({ item }) {
   return (
