@@ -1,18 +1,26 @@
-function weatherAPI() {
-    const [weatherData, setWeatherData] = useState("");
-    const [city, setCity] = useState("Reno");
+function weatherApi(latitude, longitude, APIkey) {
+    return getWeatherDataFromApi(latitude, longitude, APIkey)
+        .then((data) => processWeatherData(data));
+};
 
-    useEffect(() => {
-         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`)
-            .then((response) => response.json())
-            .then((data) => {
-                const temperature = Math.round(data.main.temp);
-                const weatherType = getWeatherData(temperature);
-                setWeatherData({ temperature, type: weatherType });
-            })
-            .catch((error) => console.error("Error fetching weather data:", error));
-    }, [city]);
+function getWeatherDataFromApi(latitude, longitude, APIkey) {
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIkey}&units=imperial`)
 
+    .then((res) => {
+        if (res.ok) {
+            return res.json();
+        }
+    })
+
+    .catch((err) => {
+        console.log(err);
+    })
+};
+
+function processWeatherData(data) {
+    const weatherData = {
+        temputure: getWeatherData(data.temperature),
+    }
 };
 
 function getWeatherData(temperature) {
@@ -25,4 +33,4 @@ function getWeatherData(temperature) {
     }
 };
 
-export default weatherAPI;
+export default weatherApi;
