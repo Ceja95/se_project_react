@@ -9,7 +9,7 @@ import ItemModal from "../ItemModal/ItemModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({ type: "hot" });
-  const [activeModal, setActiveModal] = useState("preview");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
   const handleCardClick = (card) => {
@@ -31,10 +31,21 @@ function App() {
     }
   }
 
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      closeActiveModal();
+    }
+  }
+
   useEffect(() => {
     if (activeModal == "") return;
     document.addEventListener("mousedown", closeOnOverlayClick);
-    return document.removeEventListener("mousedown", closeOnOverlayClick);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", closeOnOverlayClick);
+      document.removeEventListener("keydown", handleKeyDown);
+    }
   }, [activeModal]);
 
   return (

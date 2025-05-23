@@ -9,13 +9,13 @@ export const defaultClothingItems = [
     _id: 1,
     name: "Hoodie",
     weather: "warm",
-    link: "/src/images/north-face.jpg",
+    link: "/src/images/anime hoodie.jpg",
   },
   {
     _id: 2,
     name: "Jacket",
     weather: "cold",
-    link: "/src/images/supreme.webp",
+    link: "/src/images/neon-jacket.jpg",
   },
   {
     _id: 3,
@@ -33,6 +33,6 @@ export const defaultClothingItems = [
     _id: 5,
     name: "Coat",
     weather: "cold",
-    link: "/src/images/coat.jpg",
+    link: "/src/images/gucci-coat.jpg",
   }
 ];
