@@ -7,6 +7,7 @@ import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
+import weatherData from "../../utils/weatherData.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({});
