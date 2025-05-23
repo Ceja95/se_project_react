@@ -36,3 +36,14 @@ export const defaultClothingItems = [
     link: "/src/images/gucci-coat.jpg",
   }
 ];
+
+
+const weatherData = {
+  APIkey: "2236f68d84d73282e5dbf6bfa77d1fa6",
+  city: {
+    name: "Reno",
+    latitude: 39.5296,
+    longitude: -119.8138,
+  }
+};
+
