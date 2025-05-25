@@ -1,36 +1,30 @@
-function weatherApi(latitude, longitude, APIkey) {
-    return getWeatherDataFromApi(latitude, longitude, APIkey)
-        .then((data) => processWeatherData(data));
-};
-
-function getWeatherDataFromApi(latitude, longitude, APIkey) {
-    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIkey}&units=imperial`)
-
-    .then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-    })
-
-    .catch((err) => {
-        console.log(err);
-    })
-};
-
-function processWeatherData(data) {
-    const weatherData = {
-        temputure: getWeatherData(data.temperature),
+export const getWeather = ({ latitude, longitude }, APIkey) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+  ).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Error: ${res.status}`);
     }
+  });
 };
 
-function getWeatherData(temperature) {
-    if (temperature >= 86) {
+export const processWeatherData = (data) => {
+    const results = {};
+    results.city = data.name;
+    results.temp = {F: data.main.temp};
+    results.type = getWeatherType(results.temp.F);
+
+    return results;
+};
+
+const getWeatherType = (temperature) => {
+    if (temperature > 86) {
         return 'hot';
-    } else if (temperature >= 66) {
+    } else if (temperature >= 66 && temperature < 86){
         return 'warm';
     } else {
         return 'cold';
     }
 };
-
-export default weatherApi;

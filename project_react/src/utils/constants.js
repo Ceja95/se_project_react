@@ -34,16 +34,12 @@ export const defaultClothingItems = [
     name: "Coat",
     weather: "cold",
     link: "/src/images/gucci-coat.jpg",
-  }
+  },
 ];
 
-
-const weatherData = {
-  APIkey: "2236f68d84d73282e5dbf6bfa77d1fa6",
-  city: {
-    name: "Reno",
-    latitude: 39.5296,
-    longitude: -119.8138,
-  }
+export const coordinates = {
+  latitude: 39.526901,
+  longitude: -119.813278,
 };
 
+export const APIkey = "2236f68d84d73282e5dbf6bfa77d1fa6";
