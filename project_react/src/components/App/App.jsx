@@ -13,7 +13,7 @@ import { getWeather, processWeatherData} from "../../utils/weatherAPI";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: {},
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
