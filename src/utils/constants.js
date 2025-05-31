@@ -87,37 +87,37 @@ export const defaultClothingItems = [
     _id: 0,
     name: "Cap",
     weather: "hot",
-    link: "/src/images/snapback.png",
+    link: new URL("../images/snapback.png", import.meta.url).href, 
   },
   {
     _id: 1,
     name: "Hoodie",
     weather: "warm",
-    link: "/src/images/anime hoodie.jpg",
+    link: new URL("../images/anime hoodie.jpg", import.meta.url).href,
   },
   {
     _id: 2,
     name: "Jacket",
     weather: "cold",
-    link: "/src/images/neon-jacket.jpg",
+    link: new URL("../images/neon-jacket.jpg", import.meta.url).href,
   },
   {
     _id: 3,
     name: "Sneakers",
     weather: "cold",
-    link: "/src/images/crazy8.jpg",
+    link: new URL("../images/crazy8.jpg", import.meta.url).href,
   },
   {
     _id: 4,
     name: "T-Shirt",
     weather: "hot",
-    link: "/src/images/gucci-polo.jpeg",
+    link: new URL("../images/gucci-polo.jpeg", import.meta.url).href,
   },
   {
     _id: 5,
     name: "Coat",
     weather: "cold",
-    link: "/src/images/gucci-coat.jpg",
+    link: new URL("../images/gucci-coat.jpg", import.meta.url).href,
   },
 ];
 
