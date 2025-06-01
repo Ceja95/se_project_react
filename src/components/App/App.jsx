@@ -142,6 +142,7 @@ function App() {
         activeModal={activeModal}
         card={selectedCard}
         closeActiveModal={closeActiveModal}
+        isOpen={activeModal === "preview"}
       />
     </div>
   );
