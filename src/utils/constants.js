@@ -7,7 +7,7 @@ export const weatherTypes = [
 
   {
     day: true,
-    condition: "cloudy",
+    condition: "clouds",
     url: new URL("../images/day/cloudy.png", import.meta.url).href,
   },
 
@@ -43,7 +43,7 @@ export const weatherTypes = [
 
   {
     day: false,
-    condition: "cloudy",
+    condition: "clouds",
     url: new URL("../images/night/cloudy-night.png", import.meta.url).href,
   },
 
