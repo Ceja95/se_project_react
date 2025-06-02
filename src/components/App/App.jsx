@@ -74,7 +74,6 @@ function App() {
       <ModalWithForm
         buttonText="Add garment"
         title="New garment"
-        activeModal={activeModal}
         closeActiveModal={closeActiveModal}
         closeOnOverlayClick={closeOnOverlayClick}
         isOpen={activeModal === "add-garment"}
@@ -129,8 +128,7 @@ function App() {
             className="modal__label modal__label_type_radio"
           >
             <input
-              type="radio"
-              name="weather-type-select"
+              type="radio"              name="weather-type-select"
               id="cold"
               className="modal__radio-input"
             />
@@ -139,7 +137,6 @@ function App() {
         </fieldset>
       </ModalWithForm>
       <ItemModal
-        activeModal={activeModal}
         card={selectedCard}
         closeActiveModal={closeActiveModal}
         isOpen={activeModal === "preview"}
