@@ -3,5 +3,49 @@
     height: 28px;
     border-radius: 16px;
     border: 2px solid #000;
+    cursor: pointer;
+    position: relative;
+}
+
+.toggle-switch__text {
+    position: absolute;
+    font-size: 14px;
+    top: 5px;
+    transition: color 1s;
+}
+
+.toggle-switch__text_fahr{
+    color: #fff;
+    left: 9px;
+}
+
+.toggle-switch__text_cels{
+    right: 9px;
+}
+
+.toggle-switch__checkbox{
+   opacity: 0;
+}
+
+.toggle-switch__circle{
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background-color: #000;
+    border-radius: 50%;
+    left: 0;
+    transition: all 1s;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__circle {
+    left: 28px;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_fahr{
+    color: #000;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_cels{
+    color: #fff;
 }
 
