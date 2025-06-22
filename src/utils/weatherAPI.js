@@ -15,7 +15,7 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 export const processWeatherData = (data) => {
     const results = {};
     results.city = data.name;
-    results.temp = {F: data.main.temp};
+    results.temp = {F: Math.round(data.main.temp), C: Math.round((data.main.temp - 32) * 5 / 9)};
     results.type = getWeatherType(results.temp.F);
     results.condition = data.weather[0].main.toLowerCase();
     results.isDay = isDay(data.sys, Date.now());
@@ -37,7 +37,7 @@ const getWeatherType = (temperature) => {
         return 'cold';
     }
 };
-//Left off here. ==> continue on video 3 - Weather API <===//
+
 const convertToCelsius = (temp) => {
   weather.temperature.F = data.main.temp;
   weather.temperature.C = Math.round((temp - 32) * 5 / 9);
