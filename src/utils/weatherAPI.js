@@ -1,7 +1,9 @@
 export const getWeather = ({ latitude, longitude }, APIkey) => {
+
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
+
     if (res.ok) {
       return res.json();
     } else {
@@ -23,7 +25,7 @@ export const processWeatherData = (data) => {
 
 const isDay = ({ sunrise, sunset }, now) => {
   return sunrise * 1000 < now && now < sunset * 1000;
-}
+};
 
 
 const getWeatherType = (temperature) => {
@@ -34,4 +36,9 @@ const getWeatherType = (temperature) => {
     } else {
         return 'cold';
     }
+};
+//Left off here. ==> continue on video 3 - Weather API <===//
+const convertToCelsius = (temp) => {
+  weather.temperature.F = data.main.temp;
+  weather.temperature.C = Math.round((temp - 32) * 5 / 9);
 };

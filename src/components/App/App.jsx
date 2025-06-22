@@ -9,6 +9,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import { getWeather, processWeatherData} from "../../utils/weatherAPI";
+import CurrentTemperatureUnitContext  from "../Context/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -18,6 +19,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -36,13 +38,19 @@ function App() {
     if (e.target.classList.contains("modal_opened")) {
       closeActiveModal();
     }
-  }
+  };
 
   function handleKeyDown(e) {
     if (e.key === "Escape") {
       closeActiveModal();
     }
-  }
+  };
+
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === "F"
+    ? setCurrentTemperatureUnit("C")
+    : setCurrentTemperatureUnit("F");
+  };
 
   useEffect(() => {
     if (activeModal == "") return;
@@ -66,6 +74,7 @@ function App() {
 
   return (
     <div onClick={closeOnOverlayClick} className="page">
+      <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
@@ -141,6 +150,7 @@ function App() {
         closeActiveModal={closeActiveModal}
         isOpen={activeModal === "preview"}
       />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }

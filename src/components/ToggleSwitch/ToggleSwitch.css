@@ -12,10 +12,14 @@
     font-size: 14px;
     top: 5px;
     transition: color 1s;
+    color: #00000080;
+}
+
+.toggle-switch__text_color_white{
+    color:#fff;
 }
 
 .toggle-switch__text_fahr{
-    color: #fff;
     left: 9px;
 }
 
@@ -40,12 +44,3 @@
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
     left: 28px;
 }
-
-.toggle-switch__checkbox:checked ~ .toggle-switch__text_fahr{
-    color: #000;
-}
-
-.toggle-switch__checkbox:checked ~ .toggle-switch__text_cels{
-    color: #fff;
-}
-
