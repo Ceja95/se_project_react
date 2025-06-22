@@ -21,7 +21,7 @@ function WeatherCard({ weatherData }) {
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherData.temp[currentTemperatureUnit]}&deg;</p>
+      <p className="weather-card__temp">{weatherData.temp[currentTemperatureUnit]}&deg;{currentTemperatureUnit}</p>
       <img
         src={weatherType?.url}
         alt={`Showing ${weatherType?.day ? "day" : "night"} time ${weatherType?.condition} weather`}

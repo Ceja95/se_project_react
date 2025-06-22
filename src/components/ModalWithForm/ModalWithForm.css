@@ -28,6 +28,7 @@
   background-image: url("/src/images/close.png");
   background-repeat: no-repeat;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .modal__title {

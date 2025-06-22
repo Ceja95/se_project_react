@@ -37,8 +37,3 @@ const getWeatherType = (temperature) => {
         return 'cold';
     }
 };
-
-const convertToCelsius = (temp) => {
-  weather.temperature.F = data.main.temp;
-  weather.temperature.C = Math.round((temp - 32) * 5 / 9);
-};

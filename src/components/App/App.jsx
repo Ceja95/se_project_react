@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import "../../vendor/fonts/fonts.css";
@@ -73,11 +74,17 @@ function App() {
   }, []);
 
   return (
+
     <div onClick={closeOnOverlayClick} className="page">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+
+        <Routes>
+          <Route path="/" element={ <Main weatherData={weatherData} handleCardClick={handleCardClick} /> } />
+          <Route path="/profile" element={ <p>Profile</p> } />
+          </Routes>
+
         <Footer />
       </div>
       <ModalWithForm
