@@ -18,9 +18,11 @@ function App() {
     temp: {},
     city: "",
   });
+
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -53,6 +55,12 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  const addItemSubmit = ({ name, imageUrl, weather }) => {
+    setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
+    closeActiveModal();
+    closeOnOverlayClick();
+  };
+
   useEffect(() => {
     if (activeModal == "") return;
     document.addEventListener("mousedown", closeOnOverlayClick);
@@ -81,15 +89,18 @@ function App() {
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
 
           <Routes>
-            <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />} />
+            <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
             <Route path="/profile" element={<p>Profile</p>} />
           </Routes>
 
           <Footer />
         </div>
+
         <AddItemModal closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
-          isOpen={activeModal === "add-garment"} />
+          isOpen={activeModal === "add-garment"}
+          onAddItemSubmit={addItemSubmit} />
+
         <ItemModal
           card={selectedCard}
           closeActiveModal={closeActiveModal}
