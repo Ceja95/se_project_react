@@ -55,7 +55,7 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const addItemSubmit = ({ name, imageUrl, weather }) => {
+  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
     closeActiveModal();
     closeOnOverlayClick();
@@ -99,7 +99,7 @@ function App() {
         <AddItemModal closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
           isOpen={activeModal === "add-garment"}
-          onAddItemSubmit={addItemSubmit} />
+          onHandleAddItemSubmit={handleAddItemSubmit} />
 
         <ItemModal
           card={selectedCard}
