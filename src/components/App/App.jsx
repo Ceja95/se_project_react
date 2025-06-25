@@ -56,9 +56,15 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    setClothingItems([{ name, link: imageUrl, weather }, ...clothingItems]);
+    const newItem = {
+    name,
+    link: imageUrl,
+    weather,
+    _id: Date.now(),
+  };
+
+    setClothingItems([newItem, ...clothingItems]);
     closeActiveModal();
-    closeOnOverlayClick();
   };
 
   useEffect(() => {

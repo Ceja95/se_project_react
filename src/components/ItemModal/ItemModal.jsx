@@ -1,6 +1,8 @@
 import "./ItemModal.css"
 
 function ItemModal({ card, isOpen, closeActiveModal }) {
+    
+
     return (
         <div  className={`modal ${isOpen && "modal_opened"}`}>
             <div className="modal__content modal__content_type_image">

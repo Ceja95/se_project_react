@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./AddItemModal.css";
 
 function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleAddItemSubmit }) {
     const [name, setName] = useState("");
@@ -23,7 +22,6 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("submitted");
         onHandleAddItemSubmit({ name, imageUrl, weather });
         setName("");
         setImageUrl("");
