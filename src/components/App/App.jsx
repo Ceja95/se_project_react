@@ -24,7 +24,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [itemToDelete, setItemToDelete] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -57,11 +56,12 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+  const handleAddItemSubmit = ({ name, imageUrl, weather, _id}) => {
     const newItem = {
     name,
     link: imageUrl,
     weather,
+    _id: Date.now(),
   };
 
     setClothingItems([newItem, ...clothingItems]);
@@ -71,6 +71,11 @@ function App() {
   const openConfirmationModal = () => {
       setActiveModal("delete-item");
   };
+
+  const handleDeleteItem = () => {
+    setClothingItems(clothingItems.filter((card) => card._id !== selectedCard._id));
+    closeActiveModal();
+  }
 
   useEffect(() => {
     if (activeModal == "") return;
@@ -123,6 +128,7 @@ function App() {
         isOpen={activeModal === "delete-item"}
         closeActiveModal={closeActiveModal}
         closeOnOverlayClick={closeOnOverlayClick}
+        handleDeleteItem={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
