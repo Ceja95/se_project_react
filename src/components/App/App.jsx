@@ -57,7 +57,7 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather, }) => {
+  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     const newItem = {
     name,
     link: imageUrl,

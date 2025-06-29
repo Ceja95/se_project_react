@@ -26,7 +26,6 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
         setName("");
         setImageUrl("");
         setWeather("");
-        console.log("Submitted:", { name, imageUrl, weather });
     };
 
     return (
