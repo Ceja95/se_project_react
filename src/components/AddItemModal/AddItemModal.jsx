@@ -22,10 +22,11 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onHandleAddItemSubmit({ name, imageUrl, weather });
+        onHandleAddItemSubmit({ name, imageUrl, weather});
         setName("");
         setImageUrl("");
         setWeather("");
+        console.log("Submitted:", { name, imageUrl, weather });
     };
 
     return (

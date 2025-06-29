@@ -7,6 +7,7 @@ import { APIkey, coordinates } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
+import ItemModalDelete from "../ItemModal/ItemModalDelete";
 import Footer from "../Footer/Footer";
 import { getWeather, processWeatherData } from "../../utils/weatherAPI";
 import CurrentTemperatureUnitContext from "../Context/CurrentTemperatureUnitContext";
@@ -23,6 +24,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [itemToDelete, setItemToDelete] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -55,16 +57,19 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+  const handleAddItemSubmit = ({ name, imageUrl, weather, }) => {
     const newItem = {
     name,
     link: imageUrl,
     weather,
-    _id: Date.now(),
   };
 
     setClothingItems([newItem, ...clothingItems]);
     closeActiveModal();
+  };
+
+  const openConfirmationModal = () => {
+      setActiveModal("delete-item");
   };
 
   useEffect(() => {
@@ -111,6 +116,13 @@ function App() {
           card={selectedCard}
           closeActiveModal={closeActiveModal}
           isOpen={activeModal === "preview"}
+          openConfirmationModal={openConfirmationModal}
+        />
+
+        <ItemModalDelete 
+        isOpen={activeModal === "delete-item"}
+        closeActiveModal={closeActiveModal}
+        closeOnOverlayClick={closeOnOverlayClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
