@@ -13,6 +13,7 @@ import { getWeather, processWeatherData } from "../../utils/weatherAPI";
 import CurrentTemperatureUnitContext from "../Context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
+import { getItems } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -98,6 +99,13 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    getItems()
+    .then((data) => {
+      setClothingItems(data);
+    }).catch(console.error);
+  }, []);
+
   return (
 
     <div onClick={closeOnOverlayClick} className="page">
@@ -107,7 +115,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
-            <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} />} />
+            <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} />} />
           </Routes>
 
           <Footer />

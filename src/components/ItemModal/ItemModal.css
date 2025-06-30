@@ -20,7 +20,8 @@
 
 .modal__footer {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     margin: 20px 32px 32px;
 }
 
@@ -42,8 +43,6 @@
 }
 
 .modal-delete__button{
-    display: flex;
-    justify-content: flex-end;
     color: #FF4D00;
     background-color: transparent;
     padding: 0;
