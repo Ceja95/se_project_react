@@ -2,7 +2,7 @@ import { defaultClothingItems } from "../../utils/constants";
 import "./ClothesSelection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSelection({handleCardClick, handleDeleteItem}) {
+function ClothesSelection({handleCardClick}) {
     return (
         <div className="clothes-selection">
           

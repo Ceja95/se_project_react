@@ -9,9 +9,11 @@ function Header({ handleAddClick, weatherData }) {
 
     return (
         <header className="header">
+            
             <Link to="/" className="header__logo-link">
                 <img className="header__logo" src={WTWR} alt="weather logo" />
             </Link>
+
             <p className="header__date-and-location">{currentDate}, {weatherData.city}</p>
             <div className="header__controls">
                 <ToggleSwitch />
