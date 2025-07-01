@@ -13,7 +13,7 @@ import { getWeather, processWeatherData } from "../../utils/weatherAPI";
 import CurrentTemperatureUnitContext from "../Context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems } from "../../utils/api";
+import { getItems, newItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({

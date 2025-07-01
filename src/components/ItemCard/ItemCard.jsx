@@ -6,7 +6,7 @@ function ItemCard({ item, handleCardClick }) {
       <h2 className="card__name">{item.name}</h2>
       <img onClick={() => {
         handleCardClick(item);
-      }} className="card__img" src={item.link} alt={item.name} />
+      }} className="card__img" src={ item.link || item.imageUrl } alt={item.name} />
     </li>
   );
 }
