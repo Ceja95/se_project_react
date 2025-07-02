@@ -10,7 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import ItemModalDelete from "../ItemModal/ItemModalDelete";
 import Footer from "../Footer/Footer";
 import { getWeather, processWeatherData } from "../../utils/weatherAPI";
-import CurrentTemperatureUnitContext from "../Context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../Context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, createNewItem, deleteItem } from "../../utils/api";
@@ -93,7 +93,7 @@ function App() {
         
       })
       .catch(console.error);
-  }
+  };
 
   useEffect(() => {
     if (activeModal == "") return;
