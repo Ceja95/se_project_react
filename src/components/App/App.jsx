@@ -129,7 +129,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
-            <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} />} />
+            <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} />} />
           </Routes>
 
           <Footer />
