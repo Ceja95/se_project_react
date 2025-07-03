@@ -11,6 +11,7 @@
 .sidebar__username{
     font-size: 20px;
     margin: 0;
+    padding-top: 19px;
     font-family: "Cabinet Grotesk";
     font-weight: 700;
 }
