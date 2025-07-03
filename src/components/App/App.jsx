@@ -85,12 +85,10 @@ function App() {
   };
 
   const handleDeleteItem = (_id) => {
-    setClothingItems(clothingItems.filter((card) => card._id !== _id));
-    closeActiveModal();
-
     deleteItem(_id)
       .then(() => {
-        
+      setClothingItems((prev) => prev.filter((card) => card._id !== _id));
+      closeActiveModal();
       })
       .catch(console.error);
   };
@@ -154,6 +152,7 @@ function App() {
         closeActiveModal={closeActiveModal}
         closeOnOverlayClick={closeOnOverlayClick}
         handleDeleteItem={handleDeleteItem}
+        itemId={selectedCard._id}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
