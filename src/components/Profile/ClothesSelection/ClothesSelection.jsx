@@ -1,5 +1,5 @@
 import "./ClothesSelection.css";
-import ItemCard from "../ItemCard/ItemCard";
+import ItemCard from "../../ItemCard/ItemCard";
 
 function ClothesSelection({ handleCardClick, handleDeleteItem, clothingItems, handleAddClick }) {
   return (
