@@ -1,6 +1,5 @@
 .clothes-selection{
     display: flex;
-    overflow: hidden;
     flex-direction: column;
     flex-wrap: wrap;
     flex: 1;
@@ -9,6 +8,8 @@
 
 .clothes-selection__list{
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin: 0;
     padding: 0;
 }

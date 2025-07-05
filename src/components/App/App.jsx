@@ -58,43 +58,39 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather}) => {
+  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     const newItem = {
-    name,
-    link: imageUrl,
-    weather,
-    _id: Date.now(),
-  };
-
-    setClothingItems([newItem, ...clothingItems]);
-    closeActiveModal();
+      name,
+      link: imageUrl,
+      weather,
+      _id: Date.now(),
+    };
 
     createNewItem(newItem)
       .then((data) => {
-        setClothingItems((prevItems) =>
-        prevItems.map((item) =>
-          item._id === newItem._id ? data : item
-        )
-      );
+        setClothingItems([data, ...clothingItems]);
+        closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Failed to create new item:", error);
+      });
   };
 
   const openConfirmationModal = () => {
-      setActiveModal("delete-item");
+    setActiveModal("delete-item");
   };
 
   const handleDeleteItem = (_id) => {
     deleteItem(_id)
       .then(() => {
-      setClothingItems((prev) => prev.filter((card) => card._id !== _id));
-      closeActiveModal();
+        setClothingItems((prev) => prev.filter((card) => card._id !== _id));
+        closeActiveModal();
       })
       .catch(console.error);
   };
 
   useEffect(() => {
-    if (activeModal == "") return;
+    if (activeModal === "") return;
     document.addEventListener("mousedown", closeOnOverlayClick);
     document.addEventListener("keydown", handleKeyDown);
 
@@ -115,9 +111,9 @@ function App() {
 
   useEffect(() => {
     getItems()
-    .then((data) => {
-      setClothingItems(data);
-    }).catch(console.error);
+      .then((data) => {
+        setClothingItems(data);
+      }).catch(console.error);
   }, []);
 
   return (
@@ -147,12 +143,12 @@ function App() {
           openConfirmationModal={openConfirmationModal}
         />
 
-        <ItemModalDelete 
-        isOpen={activeModal === "delete-item"}
-        closeActiveModal={closeActiveModal}
-        closeOnOverlayClick={closeOnOverlayClick}
-        handleDeleteItem={handleDeleteItem}
-        itemId={selectedCard._id}
+        <ItemModalDelete
+          isOpen={activeModal === "delete-item"}
+          closeActiveModal={closeActiveModal}
+          closeOnOverlayClick={closeOnOverlayClick}
+          handleDeleteItem={handleDeleteItem}
+          itemId={selectedCard._id}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
