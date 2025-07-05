@@ -63,7 +63,6 @@ function App() {
       name,
       link: imageUrl,
       weather,
-      _id: Date.now(),
     };
 
     createNewItem(newItem)

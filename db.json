@@ -77,6 +77,12 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Ugly Sweater",
+      "link": "https://tse2.mm.bing.net/th/id/OIP.UCX4dg7qQeKHDGHytz-nuAHaHa?pid=Api&P=0&h=220",
+      "weather": "warm",
+      "_id": 17
     }
   ]
 }
