@@ -1,0 +1,33 @@
+.modal__content_type_delete {
+  width: 670px;
+  height: 280px;
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal__delete-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk";
+}
+
+.modal__delete-button {
+  padding: 0;
+  padding-top: 40px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk";
+  color: #ff4d00;
+  cursor: pointer;
+}
+
+.modal__delete-button_cancel {
+  padding: 0;
+  padding-top: 24px;
+  color: #000;
+}
