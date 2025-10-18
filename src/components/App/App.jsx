@@ -14,6 +14,7 @@ import CurrentTemperatureUnitContext from "../../Context/CurrentTemperatureUnitC
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, createNewItem, deleteItem } from "../../utils/api";
+import RegisterModal from "../UserModal/RegisterModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -130,7 +131,8 @@ function App() {
           <Footer />
         </div>
 
-        <AddItemModal closeActiveModal={closeActiveModal}
+        <AddItemModal 
+          closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
           isOpen={activeModal === "add-garment"}
           onHandleAddItemSubmit={handleAddItemSubmit} />
@@ -148,6 +150,12 @@ function App() {
           closeOnOverlayClick={closeOnOverlayClick}
           handleDeleteItem={handleDeleteItem}
           itemId={selectedCard._id}
+        />
+
+        <RegisterModal 
+        isOpen={activeModal === "register"}
+        closeActiveModal={closeActiveModal}
+        closeOnOverlayClick={closeOnOverlayClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
