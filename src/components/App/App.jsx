@@ -80,6 +80,18 @@ function App() {
       });
   };
 
+  const handleRegisterSubmit = ({ name, imageUrl, password, email }) => {
+      const registeration = {
+        name,
+        link: imageUrl,
+        password,
+        email,
+      };
+
+      register(registeration)
+      closeActiveModal();
+    };
+
   const openConfirmationModal = () => {
     setActiveModal("delete-item");
   };
@@ -160,7 +172,7 @@ function App() {
         isOpen={activeModal === "register"}
         closeActiveModal={closeActiveModal}
         closeOnOverlayClick={closeOnOverlayClick}
-        handleRegister={registerClick}
+        handleRegister={handleRegisterSubmit}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

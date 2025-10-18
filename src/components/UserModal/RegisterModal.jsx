@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
+function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRegister }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -25,7 +25,12 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
     const handleEmail = (e) => {
         e.preventDefault();
         setEmail(e.target.value);
-    }
+    };
+
+    const handleRegisterSubmit = (e) => {
+        e.preventDefault();
+        handleRegister({ name, imageUrl, email, password });
+    };
 
     useEffect(() => {
         if (isOpen) {
@@ -43,6 +48,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
             isOpen={isOpen}
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
+            handleSubmit={handleRegisterSubmit}
         >
 
             <label htmlFor="email" className="modal__label">
