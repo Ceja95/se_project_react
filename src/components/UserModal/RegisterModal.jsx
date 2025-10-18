@@ -7,13 +7,32 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
     const [name, setName] = useState("");
     const [imageUrl, setImageUrl] = useState("");
 
+    const handleName = (e) => {
+        e.preventDefault();
+        setName(e.target.value);
+    };
+
+    const handleImage = (e) => {
+        e.preventDefault();
+        setImageUrl(e.target.value);
+    };
+
+    const handlePassword = (e) => {
+        e.preventDefault();
+        setPassword(e.target.value);
+    };
+
+    const handleEmail = (e) => {
+        e.preventDefault();
+        setEmail(e.target.value);
+    }
+
     useEffect(() => {
         if (isOpen) {
             setEmail("");
             setPassword("");
             setName("");
             setImageUrl("");
-            setWeather("");
         }
     }, [isOpen]);
 
@@ -34,6 +53,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
                     className="modal__input"
                     placeholder="Email"
                     value={email}
+                    onChange={handleEmail}
                 />
             </label>
 
@@ -45,6 +65,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
                     className="modal__input"
                     placeholder="Password"
                     value={password}
+                    onChange={handlePassword}
                 />
             </label>
 
@@ -56,6 +77,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
                     className="modal__input"
                     placeholder="Name"
                     value={name}
+                    onChange={handleName}
                 />
             </label>
 
@@ -67,6 +89,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal }) {
                     className="modal__input"
                     placeholder="Image Url"
                     value={imageUrl}
+                    onChange={handleImage}
                 />
             </label>
         </ModalWithForm>

@@ -37,6 +37,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const registerClick = () => {
+    setActiveModal("register");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -156,6 +160,7 @@ function App() {
         isOpen={activeModal === "register"}
         closeActiveModal={closeActiveModal}
         closeOnOverlayClick={closeOnOverlayClick}
+        handleRegister={registerClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
