@@ -17,3 +17,5 @@ const login = ({ email, password }) => {
     body: JSON.stringify({ email, password }),
   });
 };
+
+export { register, login };
