@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import "../../vendor/fonts/fonts.css";
@@ -28,6 +28,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -82,16 +83,24 @@ function App() {
   };
 
   const handleRegisterSubmit = ({ name, imageUrl, password, email }) => {
-      const registeration = {
-        name,
-        link: imageUrl,
-        password,
-        email,
-      };
-
-      register(registeration)
-      closeActiveModal();
+    const registeration = {
+      name,
+      link: imageUrl,
+      password,
+      email,
     };
+
+    register(registeration)
+      .then(() => {
+        return login({ email, password });
+      })
+      .then(() => {
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Registration or login failed:", err);
+      });
+  };
 
   const openConfirmationModal = () => {
     setActiveModal("delete-item");
@@ -143,12 +152,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
             <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} />} />
+            <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
           </Routes>
 
           <Footer />
         </div>
 
-        <AddItemModal 
+        <AddItemModal
           closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
           isOpen={activeModal === "add-garment"}
@@ -169,11 +179,11 @@ function App() {
           itemId={selectedCard._id}
         />
 
-        <RegisterModal 
-        isOpen={activeModal === "register"}
-        closeActiveModal={closeActiveModal}
-        closeOnOverlayClick={closeOnOverlayClick}
-        handleRegister={handleRegisterSubmit}
+        <RegisterModal
+          isOpen={activeModal === "register"}
+          closeActiveModal={closeActiveModal}
+          closeOnOverlayClick={closeOnOverlayClick}
+          handleRegister={handleRegisterSubmit}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
