@@ -89,7 +89,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
             </label>
 
             <label htmlFor="imageUrl" className="modal__label">
-                Image
+                Avatar Image
                 <input
                     type="url"
                     id="imageUrl"

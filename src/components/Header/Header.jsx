@@ -1,10 +1,13 @@
+import {useContext} from "react";
+import CurrentUserContext from "../../Context/CurrentUserContext";
+
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import WTWR from "../../images/Logo.svg";
 import avatar from "../../images/avatar.png";
 import { Link } from "react-router-dom";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, currentUser }) {
     const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
     return (

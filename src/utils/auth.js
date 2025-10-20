@@ -18,4 +18,11 @@ const login = ({ email, password }) => {
   });
 };
 
+const checkToken = () => {
+  return fetch(`${BASE_URL}/users/me`, {
+    "Content-Type": "application/json",
+    authorization: `Bearer ${token}`,
+  });
+}
+
 export { register, login };

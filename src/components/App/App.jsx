@@ -11,6 +11,7 @@ import ItemModalDelete from "../ItemModal/ItemModalDelete";
 import Footer from "../Footer/Footer";
 import { getWeather, processWeatherData } from "../../utils/weatherAPI";
 import CurrentTemperatureUnitContext from "../../Context/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../Context/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, createNewItem, deleteItem } from "../../utils/api";
@@ -29,6 +30,10 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    name: "Terrence Tegegne",
+    avatar: "./images/avatar.png",
+  });
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -94,6 +99,11 @@ function App() {
       .then(() => {
         return login({ email, password });
       })
+      .then((res) => {
+       if (res.ok) {
+        localStorage.setItem("jwt", res.token);
+       }
+      })
       .then(() => {
         closeActiveModal();
       })
@@ -144,10 +154,11 @@ function App() {
 
   return (
 
+    <CurrentUserContext.Provider value={currentUser}>
     <div onClick={closeOnOverlayClick} className="page">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header currentUser={currentUser}  handleAddClick={handleAddClick} weatherData={weatherData} />
 
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
@@ -187,6 +198,7 @@ function App() {
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
