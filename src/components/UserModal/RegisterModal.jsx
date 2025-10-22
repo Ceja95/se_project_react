@@ -44,7 +44,9 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
 
     return (
         <ModalWithForm
-            buttonText="Next"
+            id="register-modal"
+            buttonText="Sign Up"
+            buttonNote="or Log In"
             title="Sign Up"
             isOpen={isOpen}
             closeActiveModal={closeActiveModal}
@@ -61,6 +63,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                     placeholder="Email"
                     value={email}
                     onChange={handleEmail}
+                    required
                 />
             </label>
 
@@ -73,11 +76,12 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                     placeholder="Password"
                     value={password}
                     onChange={handlePassword}
+                    required
                 />
             </label>
 
             <label htmlFor="name" className="modal__label">
-                Name
+                Name*
                 <input
                     type="text"
                     id="name"
@@ -85,11 +89,12 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                     placeholder="Name"
                     value={name}
                     onChange={handleName}
+                    required
                 />
             </label>
 
             <label htmlFor="imageUrl" className="modal__label">
-                Avatar Image
+                Avatar Image*
                 <input
                     type="url"
                     id="imageUrl"
@@ -97,6 +102,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                     placeholder="Image Url"
                     value={imageUrl}
                     onChange={handleImage}
+                    required
                 />
             </label>
         </ModalWithForm>

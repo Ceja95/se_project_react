@@ -16,6 +16,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, createNewItem, deleteItem } from "../../utils/api";
 import RegisterModal from "../UserModal/RegisterModal";
+import LoginModal from "../UserModal/LoginModal";
 import { register, login } from "../../utils/auth";
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    name: "Terrence Tegegne",
-    avatar: "./images/avatar.png",
+    name: "Jose Lara-Ceja",
+    avatar:" https://i.pravatar.cc/150?img=3", 
   });
 
   const handleCardClick = (card) => {
@@ -46,6 +47,10 @@ function App() {
 
   const registerClick = () => {
     setActiveModal("register");
+  };
+
+  const loginClick = () => {
+    setActiveModal("login");
   };
 
   const closeActiveModal = () => {
@@ -158,7 +163,7 @@ function App() {
     <div onClick={closeOnOverlayClick} className="page">
       <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
         <div className="page__content">
-          <Header currentUser={currentUser}  handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header currentUser={currentUser}  handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
 
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
@@ -195,6 +200,12 @@ function App() {
           closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
           handleRegister={handleRegisterSubmit}
+        />
+
+        <LoginModal
+          isOpen={activeModal === "login"}
+          closeActiveModal={closeActiveModal}
+          closeOnOverlayClick={closeOnOverlayClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

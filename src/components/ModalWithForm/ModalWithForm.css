@@ -101,11 +101,23 @@
   margin-right: 8px;
 }
 
+.modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.modal__button-note {
+  font-family: "Cabinet Grotesk";
+  font-weight: 500;
+  font-size: 14px;
+  color: #00000099;
+}
+
 .modal__submit {
   width: 124px;
   height: 36px;
-  position: absolute;
-  bottom: 36px;
   background-color: #000000;
   border-radius: 4px;
   border: none;
@@ -118,4 +130,14 @@
 
 .modal__submit:disabled {
   background-color: #0000004d;
+}
+
+#login-modal.modal__content,
+#login-modal .modal__content {
+  height: 304px;
+}
+
+#register-modal.modal__content,
+#register-modal .modal__content {
+  height: 456px;
 }

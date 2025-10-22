@@ -52,6 +52,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                     placeholder="Name"
                     onChange={handleNameChange}
                     value={name}
+                    required
                 />
             </label>
 
@@ -64,6 +65,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                     placeholder="Image Url"
                     onChange={handleImageChange}
                     value={imageUrl}
+                    required
                 />
             </label>
 
@@ -79,6 +81,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                         onChange={handleWeatherChange}
                         value="hot"
                         checked={weather === "hot"}
+                        required
                     />
                     Hot
                 </label>
@@ -95,6 +98,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                         onChange={handleWeatherChange}
                         value="warm"
                         checked={weather === "warm"}
+                        required
                     />
                     Warm
                 </label>
@@ -110,6 +114,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                         onChange={handleWeatherChange}
                         value="cold"
                         checked={weather === "cold"}
+                        required
                     />
                     Cold
                 </label>
