@@ -1,7 +1,9 @@
 import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard";
 
-function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, handleAddClick }) {
+function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, handleAddClick, currentUser }) {
+  const userClothingItems = clothingItems.filter(item => item.owner === currentUser._id); 
+
   return (
     <div className="clothes-selection">
       <div className="clothes-selection__header">
@@ -9,7 +11,7 @@ function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, hand
       <button onClick={handleAddClick} type="button" className="clothes-selection__add-button">+ Add New Clothing</button>
       </div>
       <ul className="clothes-selection__list">
-        {clothingItems
+        {userClothingItems
           .map((item) => {
             return (
               <ItemCard

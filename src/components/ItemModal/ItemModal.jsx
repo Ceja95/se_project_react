@@ -1,7 +1,11 @@
 import "../ModalWithForm/ModalWithForm.css";
 import "./ItemModal.css";
 
-function ItemModal({ card, isOpen, closeActiveModal, openConfirmationModal }) {
+function ItemModal({ card, isOpen, closeActiveModal, openConfirmationModal, selectedCard, currentUser }) {
+    const isOwn = selectedCard.owner === currentUser._id;
+    const itemDeleteButtonClassName = (
+        `modal-delete__button ${isOwn ? "" : "modal-delete__button_hidden"}`
+    );
 
     return (
         <div className={`modal ${isOpen && "modal_opened"}`}>

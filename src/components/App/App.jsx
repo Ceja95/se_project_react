@@ -110,6 +110,8 @@ function App() {
        }
       })
       .then(() => {
+        setCurrentUser(registeration);
+        setIsLoggedIn(true);
         closeActiveModal();
       })
       .catch((err) => {
@@ -185,6 +187,8 @@ function App() {
           closeActiveModal={closeActiveModal}
           isOpen={activeModal === "preview"}
           openConfirmationModal={openConfirmationModal}
+          selectedCard={selectedCard}
+          currentUser={currentUser}
         />
 
         <ItemModalDelete

@@ -1,5 +1,7 @@
+const baseUrl = "http://localhost:3001";
+
 const register = ({ name, avatar, email, password }) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -9,7 +11,7 @@ const register = ({ name, avatar, email, password }) => {
 };
 
 const login = ({ email, password }) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,11 +20,11 @@ const login = ({ email, password }) => {
   });
 };
 
-const checkToken = () => {
-  return fetch(`${BASE_URL}/users/me`, {
+const checkToken = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
     "Content-Type": "application/json",
     authorization: `Bearer ${token}`,
   });
 }
 
-export { register, login };
+export { register, login, checkToken };
