@@ -141,3 +141,8 @@
 #register-modal .modal__content {
   height: 456px;
 }
+
+#edit-profile-modal.modal__content,
+#edit-profile-modal .modal__content {
+  height: 304px;
+}

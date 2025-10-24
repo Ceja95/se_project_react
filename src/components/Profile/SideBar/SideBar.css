@@ -1,5 +1,10 @@
 .sidebar{
     display: flex;
+    flex-direction: column;
+}
+
+.sidebar__profile-info{
+    display: flex;
 }
 
 .sidebar__avatar{
@@ -14,4 +19,12 @@
     padding-top: 19px;
     font-family: "Cabinet Grotesk";
     font-weight: 700;
+}
+
+.sidebar__profile-properties{
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 12px;
 }

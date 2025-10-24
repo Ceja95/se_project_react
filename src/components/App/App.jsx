@@ -18,6 +18,7 @@ import { getItems, createNewItem, deleteItem } from "../../utils/api";
 import RegisterModal from "../UserModal/RegisterModal";
 import LoginModal from "../UserModal/LoginModal";
 import { register, login } from "../../utils/auth";
+import EditProfileModal from "../EditProfile/EditProfileModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -47,6 +48,10 @@ function App() {
 
   const registerClick = () => {
     setActiveModal("register");
+  };
+
+  const editProfileClick = () => {
+    setActiveModal("edit-profile");
   };
 
   const loginClick = () => {
@@ -111,7 +116,6 @@ function App() {
       })
       .then(() => {
         setCurrentUser(registeration);
-        setIsLoggedIn(true);
         closeActiveModal();
       })
       .catch((err) => {
@@ -169,7 +173,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />} />
-            <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} />} />
+            <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} />} />
             <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
           </Routes>
 
@@ -210,6 +214,13 @@ function App() {
           isOpen={activeModal === "login"}
           closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
+        />
+
+        <EditProfileModal
+          isOpen={activeModal === "edit-profile"}
+          closeActiveModal={closeActiveModal}
+          closeOnOverlayClick={closeOnOverlayClick}
+          editProfileClick={editProfileClick}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
