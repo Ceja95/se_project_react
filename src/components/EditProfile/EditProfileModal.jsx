@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, currentUser }) {
+function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, currentUser, handleUpdateUser }) {
     const [name, setName] = useState(currentUser?.name || "");
     const [imageUrl, setImageUrl] = useState(currentUser?.avatar || "");
     
@@ -19,7 +19,7 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
     const handleEditProfileSubmit = (e) => {
         e.preventDefault();
 
-        onUpdateUser({
+        handleUpdateUser({
             name,
             avatar: imageUrl,
         });
@@ -27,8 +27,8 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
 
     useEffect(() => {
         if (isOpen) {
-            setName("");
-            setImageUrl("");
+            setName(currentUser?.name || "");
+            setImageUrl(currentUser?.avatar || "");
         }
     }, [isOpen]);
 
@@ -40,7 +40,7 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
             isOpen={isOpen}
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
-            handleEditProfileSubmit={handleEditProfileSubmit}
+            handleSubmit={handleEditProfileSubmit}
         >
 
             <label htmlFor="name" className="modal__label">

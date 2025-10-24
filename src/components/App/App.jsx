@@ -33,8 +33,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    name: "Jose Lara-Ceja",
-    avatar:" https://i.pravatar.cc/150?img=3", 
+    name: "Reno",
+    avatar:"https://tse4.mm.bing.net/th/id/OIP.s_gttkdqS1wiqt0tX4T6mAHaFj?pid=Api&P=0&h=220", 
   });
 
   const handleCardClick = (card) => {
@@ -125,7 +125,7 @@ function App() {
 
   const handleUpdateUser = () => {
     const token = localStorage.getItem("jwt");
-    
+
     updateUser(currentUser, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
