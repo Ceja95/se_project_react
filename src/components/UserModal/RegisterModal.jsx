@@ -51,7 +51,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
             isOpen={isOpen}
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
-            handleSubmit={handleRegisterSubmit}
+            handleRegisterSubmit={handleRegisterSubmit}
         >
 
             <label htmlFor="email" className="modal__label">

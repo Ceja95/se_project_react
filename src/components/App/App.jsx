@@ -17,7 +17,7 @@ import Profile from "../Profile/Profile";
 import { getItems, createNewItem, deleteItem } from "../../utils/api";
 import RegisterModal from "../UserModal/RegisterModal";
 import LoginModal from "../UserModal/LoginModal";
-import { register, login } from "../../utils/auth";
+import { register, login, checkToken, updateUser } from "../../utils/auth";
 import EditProfileModal from "../EditProfile/EditProfileModal";
 
 function App() {
@@ -123,6 +123,19 @@ function App() {
       });
   };
 
+  const handleUpdateUser = () => {
+    const token = localStorage.getItem("jwt");
+    
+    updateUser(currentUser, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Failed to update user:", err);
+      });
+  };
+
   const openConfirmationModal = () => {
     setActiveModal("delete-item");
   };
@@ -220,7 +233,7 @@ function App() {
           isOpen={activeModal === "edit-profile"}
           closeActiveModal={closeActiveModal}
           closeOnOverlayClick={closeOnOverlayClick}
-          editProfileClick={editProfileClick}
+          handleUpdateUser={handleUpdateUser}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
