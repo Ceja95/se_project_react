@@ -32,6 +32,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "Reno",
     avatar:"https://tse4.mm.bing.net/th/id/OIP.s_gttkdqS1wiqt0tX4T6mAHaFj?pid=Api&P=0&h=220", 
@@ -58,6 +59,10 @@ function App() {
     setActiveModal("login");
   };
 
+  const onLikeClick = (like) => {
+    setIsLiked(like);
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -78,6 +83,36 @@ function App() {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    console.log("isLiked in App.jsx:", isLiked);
+    !isLiked
+      ?
+      api.addCardLike(id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) => 
+        cards.map((item) => item._id === id ? updatedCard : item))
+      })
+      .then(() => {
+        setIsLiked(true);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      :
+      api.removeCardLike(id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) => 
+        cards.map((item) => item._id === id ? updatedCard : item))
+      })
+      .then(() => {
+        setIsLiked(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
@@ -173,7 +208,8 @@ function App() {
     getItems()
       .then((data) => {
         setClothingItems(data);
-      }).catch(console.error);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -206,6 +242,7 @@ function App() {
           openConfirmationModal={openConfirmationModal}
           selectedCard={selectedCard}
           currentUser={currentUser}
+          onCardLike={handleCardLike}
         />
 
         <ItemModalDelete

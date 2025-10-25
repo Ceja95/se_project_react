@@ -57,3 +57,17 @@
 .modal-delete__button_hidden {
     display: none;
 }
+
+.modal-like__button{
+    background: transparent url(../../images/Heart.svg) no-repeat center;
+    overflow: auto;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-like__button:hover {
+    opacity: 50%;
+}
