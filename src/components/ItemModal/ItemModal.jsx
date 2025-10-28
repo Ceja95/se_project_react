@@ -1,7 +1,7 @@
 import "../ModalWithForm/ModalWithForm.css";
 import "./ItemModal.css";
 
-function ItemModal({ card, isOpen, closeActiveModal, openConfirmationModal, selectedCard, currentUser, handleCardLike }) {
+function ItemModal({ card, isOpen, closeActiveModal, openConfirmationModal, selectedCard, currentUser }) {
     const isOwn = selectedCard.owner === currentUser._id;
     const itemDeleteButtonClassName = (
         `modal-delete__button ${isOwn ? "" : "modal-delete__button_hidden"}`
@@ -18,7 +18,6 @@ function ItemModal({ card, isOpen, closeActiveModal, openConfirmationModal, sele
                         <p className="modal__weather">Weather: {card.weather}</p>
                     </div>
                     <button type="button" onClick={openConfirmationModal} className="modal-delete__button">Delete Item</button>
-                    <button type="button" onClick={() => handleCardLike(item)} className="modal-like__button"></button>
                 </div>
             </div>
         </div>
