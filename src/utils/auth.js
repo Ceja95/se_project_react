@@ -23,11 +23,11 @@ const login = ({ email, password }) => {
 const checkToken = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     headers: {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
   });
-}
+};
 
 const updateUser = (userData, token) => {
   return fetch(`${baseUrl}/users/me`, {
@@ -36,9 +36,10 @@ const updateUser = (userData, token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ 
-      name: userData.name, 
-      avatar: userData.avatar }),
+    body: JSON.stringify({
+      name: userData.name,
+      avatar: userData.avatar,
+    }),
   });
 };
 

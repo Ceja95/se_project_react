@@ -19,6 +19,7 @@ import RegisterModal from "../UserModal/RegisterModal";
 import LoginModal from "../UserModal/LoginModal";
 import { register, login, checkToken, updateUser } from "../../utils/auth";
 import EditProfileModal from "../EditProfile/EditProfileModal";
+import LogOutModal from "../UserModal/LogOutModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -33,10 +34,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    name: "Reno",
-    avatar: "https://tse4.mm.bing.net/th/id/OIP.s_gttkdqS1wiqt0tX4T6mAHaFj?pid=Api&P=0&h=220",
-  });
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -57,6 +55,10 @@ function App() {
 
   const loginClick = () => {
     setActiveModal("login");
+  };
+
+  const logoutClick = () => {
+    setActiveModal("logout");
   };
 
   const onLikeClick = (likes) => {
@@ -85,7 +87,7 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleCardLike = ( _id, isLiked ) => {
+  const handleCardLike = (_id, isLiked) => {
     const token = localStorage.getItem("jwt");
 
     !isLiked
@@ -187,12 +189,13 @@ function App() {
   };
 
   const handleLoginSubmit = ({ email, password }) => {
+
     login({ email, password })
       .then(async (res) => {
         if (res.ok) {
           const data = await res.json();
           localStorage.setItem("jwt", data.token);
-          return data; // pass data to the next .then()
+          return data;
         } else {
           throw new Error("Login failed");
         }
@@ -204,6 +207,10 @@ function App() {
       .catch((err) => {
         console.error("Login error:", err);
       });
+  };
+
+  const handleLogoutUser = () => {
+    localStorage.setItem("jwt", "");
   };
 
   useEffect(() => {
@@ -244,7 +251,7 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} />} />
-              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} />} />
+              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} />} />
               <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
             </Routes>
 
@@ -287,6 +294,13 @@ function App() {
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             handleLoginSubmit={handleLoginSubmit}
+          />
+
+          <LogOutModal
+            isOpen={activeModal === "logout"}
+            closeActiveModal={closeActiveModal}
+            closeOnOverlayClick={closeOnOverlayClick}
+            handleLogoutUser={handleLogoutUser}
           />
 
           <EditProfileModal

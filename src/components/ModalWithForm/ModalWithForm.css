@@ -146,3 +146,22 @@
 #edit-profile-modal .modal__content {
   height: 304px;
 }
+
+#logout-modal.modal__actions,
+#logout-modal .modal__actions{
+  display: flex;
+  justify-content: center;
+}
+
+#logout-modal .logout-modal__title,
+#logout-modal .logout-modal__title {
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+}
+
+#logout-modal .modal__content,
+#logout-modal.modal__content {
+  width: 400px;
+  height: 200px;
+}
