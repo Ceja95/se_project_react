@@ -13,10 +13,10 @@ function SideBar({ editProfileClick, logoutClick }) {
     useEffect(() => {
         const token = localStorage.getItem("jwt");
 
-        if (token.length > 0) {
+        if (token?.length > 0) {
             setLoggedIn(true);
         }
-    })
+    });
 
     return (
         <div className="sidebar">

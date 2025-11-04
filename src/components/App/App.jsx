@@ -164,8 +164,12 @@ function App() {
 
   const handleUpdateUser = () => {
     const token = localStorage.getItem("jwt");
+    const user = {
+      name: currentUser.name,
+      avatar: currentUser.avatar,
+    };
 
-    updateUser(currentUser, token)
+    updateUser(user, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         closeActiveModal();
@@ -195,10 +199,13 @@ function App() {
         if (res.ok) {
           const data = await res.json();
           localStorage.setItem("jwt", data.token);
+          checkToken(data.token)
+          .then((userData) => {
+            const currentUser = userData.json();
+            console.log(currentUser);
+          });
           return data;
-        } else {
-          throw new Error("Login failed");
-        }
+        } 
       })
       .then((data) => {
         console.log("Checking token with login res:", data);
@@ -251,7 +258,7 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} />} />
-              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} />} />
+              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
               <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
             </Routes>
 

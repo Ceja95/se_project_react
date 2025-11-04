@@ -29,7 +29,7 @@ const checkToken = (token) => {
   });
 };
 
-const updateUser = (userData, token) => {
+const updateUser = (user, token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -37,8 +37,8 @@ const updateUser = (userData, token) => {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      name: userData.name,
-      avatar: userData.avatar,
+      name: user.name,
+      avatar: user.avatar,
     }),
   });
 };

@@ -15,10 +15,10 @@ function Header({ handleAddClick, registerClick, loginClick, weatherData }) {
     useEffect(() => {
             const token = localStorage.getItem("jwt");
     
-            if (token.length > 0) {
+            if (token?.length > 0) {
                 setLoggedIn(true);
             }
-        })
+        });
 
     return (
         <header className="header">

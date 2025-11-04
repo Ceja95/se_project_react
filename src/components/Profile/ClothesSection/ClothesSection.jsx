@@ -2,8 +2,10 @@ import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard";
 
 function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, handleAddClick, currentUser }) {
-  //const userClothingItems = clothingItems.filter(item => item.owner === currentUser?._id); 
-
+  const userClothingItems = clothingItems.filter(item => item.owner === currentUser?._id); 
+  console.log(userClothingItems);
+  console.log(clothingItems[0]);
+  console.log(currentUser);
   return (
     <div className="clothes-selection">
       <div className="clothes-selection__header">
