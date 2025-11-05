@@ -7,7 +7,13 @@ export const checkResponse = (res) => {
 };
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then(checkResponse);
 };
 
 function createNewItem(itemData) {
@@ -19,7 +25,7 @@ function createNewItem(itemData) {
     },
     body: JSON.stringify(itemData),
   }).then(checkResponse);
-};
+}
 
 function deleteItem(_id) {
   return fetch(`${baseUrl}/items/${_id}`, {
@@ -29,26 +35,26 @@ function deleteItem(_id) {
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
-};
+}
 
-function addCardLike( _id, token ) {
+function addCardLike(_id, token) {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
-  }})
-  .then(checkResponse);
+    },
+  }).then(checkResponse);
 }
 
-function removeCardLike( _id, token ) {
+function removeCardLike(_id, token) {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
-  }})
-  .then(checkResponse);
+    },
+  }).then(checkResponse);
 }
 
 export { getItems, createNewItem, deleteItem, addCardLike, removeCardLike };

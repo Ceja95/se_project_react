@@ -8,11 +8,13 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
     
     const handleName = (e) => {
         e.preventDefault();
+
         setName(e.target.value);
     };
 
     const handleImage = (e) => {
         e.preventDefault();
+
         setImageUrl(e.target.value);
     };
 

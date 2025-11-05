@@ -162,17 +162,18 @@ function App() {
       });
   };
 
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (userData) => {
     const token = localStorage.getItem("jwt");
     const user = {
-      name: currentUser.name,
-      avatar: currentUser.avatar,
+      name: userData.name,
+      avatar: userData.avatar,
     };
 
     updateUser(user, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         closeActiveModal();
+        window.location.reload();
       })
       .catch((err) => {
         console.error("Failed to update user:", err);
@@ -200,21 +201,21 @@ function App() {
           const data = await res.json();
           localStorage.setItem("jwt", data.token);
           checkToken(data.token)
-          .then((userData) => {
-            const currentUser = userData.json();
-            console.log(currentUser);
-          });
+            .then(async (userData) => {
+              const currentUser = await userData.json();
+              setCurrentUser(currentUser);
+              setIsLoggedIn(true);
+            });
           return data;
-        } 
+        }
       })
-      .then((data) => {
-        console.log("Checking token with login res:", data);
+      .then(() => {
         closeActiveModal();
       })
       .catch((err) => {
         console.error("Login error:", err);
       });
-  };
+  }
 
   const handleLogoutUser = () => {
     localStorage.setItem("jwt", "");
@@ -246,6 +247,15 @@ function App() {
         setClothingItems(data);
       })
       .catch(console.error);
+    const token = localStorage.getItem("jwt");
+    if (token?.length > 0) {
+      checkToken(token)
+        .then(async (userData) => {
+          const currentUser = await userData.json();
+          setCurrentUser(currentUser);
+          setIsLoggedIn(true);
+        });
+    }
   }, []);
 
   return (
@@ -257,7 +267,7 @@ function App() {
             <Header currentUser={currentUser} handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
 
             <Routes>
-              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} />} />
+              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser} />} />
               <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
               <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
             </Routes>
