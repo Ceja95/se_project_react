@@ -1,7 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard";
 
-function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, handleAddClick, currentUser }) {
+function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, handleAddClick, currentUser, handleCardLike }) {
   const currentUserItems = clothingItems.filter((item) => item.owner === currentUser._id);
 
   return (
@@ -19,6 +19,7 @@ function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, hand
                 item={item}
                 handleCardClick={handleCardClick}
                 handleDeleteItem={handleDeleteItem}
+                handleCardLike={handleCardLike}
               />
             );
           })}

@@ -50,3 +50,7 @@
 .card__like_button:hover{
     cursor: pointer;
 }
+
+.card__like_button_liked{
+    background-image: url(../../images/HeartActive.svg);
+}

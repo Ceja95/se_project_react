@@ -35,6 +35,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useState("");
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -61,10 +62,6 @@ function App() {
     setActiveModal("logout");
   };
 
-  const onLikeClick = (likes) => {
-    setIsLiked(likes);
-  };
-
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -88,7 +85,6 @@ function App() {
   };
 
   const handleCardLike = (_id, isLiked) => {
-    const token = localStorage.getItem("jwt");
 
     !isLiked
       ?
@@ -163,7 +159,6 @@ function App() {
   };
 
   const handleUpdateUser = (userData) => {
-    const token = localStorage.getItem("jwt");
     const user = {
       name: userData.name,
       avatar: userData.avatar,
@@ -200,10 +195,12 @@ function App() {
         if (res.ok) {
           const data = await res.json();
           localStorage.setItem("jwt", data.token);
+          setToken(data.token);
           checkToken(data.token)
             .then(async (userData) => {
               const currentUser = await userData.json();
               setCurrentUser(currentUser);
+              console.log(currentUser);
               setIsLoggedIn(true);
             });
           return data;
@@ -248,6 +245,7 @@ function App() {
       })
       .catch(console.error);
     const token = localStorage.getItem("jwt");
+    setToken(token);
     if (token?.length > 0) {
       checkToken(token)
         .then(async (userData) => {
@@ -268,7 +266,7 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser} />} />
-              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
+              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
               <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
             </Routes>
 
