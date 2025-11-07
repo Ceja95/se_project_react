@@ -1,8 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import CurrentUserContext from "../../../Context/CurrentUserContext";
 
-import { checkToken } from "../../../utils/auth";
-
 import "./SideBar.css";
 
 function SideBar({ editProfileClick, logoutClick }) {

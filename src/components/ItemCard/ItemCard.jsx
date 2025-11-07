@@ -10,7 +10,7 @@ function ItemCard({ item, handleCardClick, handleCardLike, currentUser }) {
       <img onClick={() => {
         handleCardClick(item);
       }} className="card__img" src={item.link || item.imageUrl} alt={item.name} />
-       <button type="button" onClick={() => handleCardLike(item._id, token)} className="card-like__button"></button>
+       <button type="button" onClick={() => handleCardLike(item._id, token)} className="card__like_button"></button>
     </li>
   );
 }
