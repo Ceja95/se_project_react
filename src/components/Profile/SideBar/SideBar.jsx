@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import CurrentUserContext from "../../../Context/CurrentUserContext";
 
 import "./SideBar.css";
+import defaultAvatar from "../../../images/avatar.png";
 
 function SideBar({ editProfileClick, logoutClick }) {
     const user = useContext(CurrentUserContext);
@@ -19,8 +20,8 @@ function SideBar({ editProfileClick, logoutClick }) {
     return (
         <div className="sidebar">
             <div className="sidebar__profile-info">
-                <img className="sidebar__avatar" src={user.avatar} alt="" />
-                <h1 className="sidebar__username">{user.name}</h1>
+                <img className="sidebar__avatar" src={user.avatar || defaultAvatar} alt="" />
+                <h1 className="sidebar__username">{user.name || ""}</h1>
             </div>
             <div className="sidebar__profile-properties">
 

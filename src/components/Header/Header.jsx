@@ -5,6 +5,7 @@ import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import WTWR from "../../images/Logo.svg";
 import { Link } from "react-router-dom";
+import defaultAvatar from "../../images/avatar.png";
 
 function Header({ handleAddClick, registerClick, loginClick, weatherData }) {
     const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
@@ -38,8 +39,8 @@ function Header({ handleAddClick, registerClick, loginClick, weatherData }) {
 
             <Link to="/profile" className="header__profile-link">
                 <div className="header__user-container">
-                    <p className="header__username">{user.name}</p>
-                    <img className="header__avatar" src={user.avatar} alt="" />
+                    <p className="header__username">{user.name || ""}</p>
+                    <img className="header__avatar" src={user.avatar || defaultAvatar} alt="" />
                 </div>
             </Link>
         </header>
