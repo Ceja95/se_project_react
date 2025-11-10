@@ -49,7 +49,7 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
                 Name*
                 <input
                     type="text"
-                    id="name"
+                    id="edit-profile-name"
                     className="modal__input"
                     placeholder="Name"
                     value={name}
@@ -62,7 +62,7 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
                 Avatar Image*
                 <input
                     type="url"
-                    id="imageUrl"
+                    id="edit-profile-imageUrl"
                     className="modal__input"
                     placeholder="Image Url"
                     value={imageUrl}

@@ -1,17 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function Logout({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogoutUser }) {
-    const [name, setName] = useState("");
-    const [avatar, setAvatar] = useState("");
 
     const handleLogout = (e) => {
         e.preventDefault();
         handleLogoutUser();
-
-        setName("");
-        setAvatar("");
+ 
         window.location.reload();
     };
 

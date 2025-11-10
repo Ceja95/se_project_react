@@ -44,7 +44,7 @@ function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogin
                 Email
                 <input
                     type="email"
-                    id="email"
+                    id="login-email"
                     className="modal__input"
                     placeholder="Email"
                     value={email}
@@ -57,7 +57,7 @@ function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogin
                 Password
                 <input
                     type="password"
-                    id="password"
+                    id="login-password"
                     className="modal__input"
                     placeholder="Password"
                     value={password}

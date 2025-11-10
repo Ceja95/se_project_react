@@ -58,7 +58,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 Email*
                 <input
                     type="email"
-                    id="email"
+                    id="register-email"
                     className="modal__input"
                     placeholder="Email"
                     value={email}
@@ -71,7 +71,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 Password*
                 <input
                     type="password"
-                    id="password"
+                    id="register-password"
                     className="modal__input"
                     placeholder="Password"
                     value={password}
@@ -84,7 +84,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 Name*
                 <input
                     type="text"
-                    id="name"
+                    id="register-name"
                     className="modal__input"
                     placeholder="Name"
                     value={name}

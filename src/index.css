@@ -1,3 +1,2 @@
 @import url(./vendor/normalize.css);
-@import url(../../se_project_react/src/components/UserModal/LoginModal.css);
-@import url(../../se_project_react/src/components/UserModal/RegisterModal.css);
+@import url(./components/UserModal/RegisterModal.css);

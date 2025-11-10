@@ -47,7 +47,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                 Name
                 <input
                     type="text"
-                    id="name"
+                    id="add-item-name"
                     className="modal__input"
                     placeholder="Name"
                     onChange={handleNameChange}
@@ -60,7 +60,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                 Image
                 <input
                     type="url"
-                    id="imageUrl"
+                    id="add-item-imageUrl"
                     className="modal__input"
                     placeholder="Image Url"
                     onChange={handleImageChange}

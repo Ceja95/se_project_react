@@ -94,7 +94,6 @@ function App() {
             cards.map((item) => item._id === _id ? updatedCard : item))
         })
         .then(() => {
-          console.log(_id);
           setIsLiked(true);
         })
         .catch((err) => {
@@ -107,7 +106,6 @@ function App() {
             cards.map((item) => item._id === _id ? updatedCard : item))
         })
         .then(() => {
-          console.log(_id);
           setIsLiked(false);
         })
         .catch((err) => {
@@ -265,7 +263,7 @@ function App() {
             <Header currentUser={currentUser} handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
 
             <Routes>
-              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser} />} />
+              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser}  />} />
               <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
               <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
             </Routes>
