@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./App.css";
 import "../../vendor/fonts/fonts.css";
@@ -36,6 +37,9 @@ function App() {
   const [isLiked, setIsLiked] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [token, setToken] = useState("");
+
+  const navigate = useNavigate();
+
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -113,14 +117,9 @@ function App() {
         });
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    const newItem = {
-      name,
-      imageUrl: imageUrl,
-      weather,
-    };
+  const handleAddItemSubmit = (item) => {
 
-    createNewItem(newItem)
+    createNewItem(item, token)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         closeActiveModal();
@@ -131,25 +130,28 @@ function App() {
   };
 
   const handleRegisterSubmit = ({ name, imageUrl, password, email }) => {
-    const registeration = {
+    const registration = {
       name,
-      link: imageUrl,
+      avatar: imageUrl,
       password,
       email,
     };
 
-    register(registeration)
+    register(registration)
       .then(() => {
         return login({ email, password });
       })
       .then((res) => {
         if (res.ok) {
-          localStorage.setItem("jwt", res.token);
+          return res.json();
         }
+        throw new Error(`Error: ${res.status}`);
       })
-      .then(() => {
-        setCurrentUser(registeration);
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        setIsLoggedIn(true);
         closeActiveModal();
+        return checkToken(data.token);
       })
       .catch((err) => {
         console.error("Registration or login failed:", err);
@@ -163,10 +165,15 @@ function App() {
     };
 
     updateUser(user, token)
-      .then((updatedUser) => {
-        setCurrentUser(updatedUser);
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error(`Error: ${res.status}`);
+      })
+      .then((updatedUserData) => {
+        setCurrentUser(updatedUserData);
         closeActiveModal();
-        window.location.reload();
       })
       .catch((err) => {
         console.error("Failed to update user:", err);
@@ -178,7 +185,7 @@ function App() {
   };
 
   const handleDeleteItem = (_id) => {
-    deleteItem(_id)
+    deleteItem(_id, token)
       .then(() => {
         setClothingItems((prev) => prev.filter((card) => card._id !== _id));
         closeActiveModal();
@@ -198,7 +205,6 @@ function App() {
             .then(async (userData) => {
               const currentUser = await userData.json();
               setCurrentUser(currentUser);
-              console.log(currentUser);
               setIsLoggedIn(true);
             });
           return data;
@@ -213,7 +219,11 @@ function App() {
   }
 
   const handleLogoutUser = () => {
-    localStorage.setItem("jwt", "");
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/login");
+    closeActiveModal();
   };
 
   useEffect(() => {
@@ -263,7 +273,7 @@ function App() {
             <Header currentUser={currentUser} handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
 
             <Routes>
-              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser}  />} />
+              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser} />} />
               <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
               <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
             </Routes>
