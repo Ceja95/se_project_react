@@ -274,19 +274,19 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser} />} />
-              <Route path="/profile" element={<Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />} />
-              <Route path="*" element={isLoggedIn ? (<Navigate to="/profile" replace />) : (<Navigate to="/login" replace />)} />
+              <Route path="/profile" element={isLoggedIn ? (<Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />) : (<Navigate to="/login" replace />)} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
 
             <Footer />
           </div>
 
-          <AddItemModal
+          {isLoggedIn && <AddItemModal
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             isOpen={activeModal === "add-garment"}
             onHandleAddItemSubmit={handleAddItemSubmit}
-          />
+          />}
 
           <ItemModal
             card={selectedCard}
@@ -331,6 +331,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             handleUpdateUser={handleUpdateUser}
+            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

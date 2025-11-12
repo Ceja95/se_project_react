@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../Context/CurrentUserContext";
 
 import "./Header.css";
@@ -14,16 +14,16 @@ function Header({ handleAddClick, registerClick, loginClick, weatherData }) {
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
-            const token = localStorage.getItem("jwt");
-    
-            if (token?.length > 0) {
-                setLoggedIn(true);
-            }
-        });
+        const token = localStorage.getItem("jwt");
+
+        if (token?.length > 0) {
+            setLoggedIn(true);
+        }
+    });
 
     return (
         <header className="header">
-            
+
             <Link to="/" className="header__logo-link">
                 <img className="header__logo" src={WTWR} alt="weather logo" />
             </Link>
@@ -31,7 +31,7 @@ function Header({ handleAddClick, registerClick, loginClick, weatherData }) {
             <p className="header__date-and-location">{currentDate}, {weatherData.city}</p>
             <div className="header__controls">
                 <ToggleSwitch />
-                <button onClick={handleAddClick} type="button" className="header__add-clothes-btn"> + Add clothes</button>
+                {loggedIn && <button onClick={handleAddClick} type="button" className="header__add-clothes-btn"> + Add clothes</button>}
             </div>
             {!loggedIn && <button onClick={registerClick} className="header__register" type="button">Sign Up</button>}
 
