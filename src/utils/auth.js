@@ -1,3 +1,5 @@
+import { checkResponse } from "./api";
+
 const baseUrl = "http://localhost:3001";
 
 const register = ({ name, avatar, email, password }) => {
@@ -7,7 +9,7 @@ const register = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  });
+  }).then(checkResponse);
 };
 
 const login = ({ email, password }) => {
@@ -17,7 +19,7 @@ const login = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  });
+  }).then(checkResponse);
 };
 
 const checkToken = (token) => {
@@ -26,7 +28,7 @@ const checkToken = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(checkResponse);
 };
 
 const updateUser = (user, token) => {
@@ -40,7 +42,7 @@ const updateUser = (user, token) => {
       name: user.name,
       avatar: user.avatar,
     }),
-  });
+  }).then(checkResponse);
 };
 
 export { register, login, checkToken, updateUser };

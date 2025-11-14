@@ -141,12 +141,6 @@ function App() {
       .then(() => {
         return login({ email, password });
       })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error(`Error: ${res.status}`);
-      })
       .then((data) => {
         localStorage.setItem("jwt", data.token);
         setIsLoggedIn(true);
@@ -165,12 +159,6 @@ function App() {
     };
 
     updateUser(user, token)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error(`Error: ${res.status}`);
-      })
       .then((updatedUserData) => {
         setCurrentUser(updatedUserData);
         closeActiveModal();
@@ -196,19 +184,15 @@ function App() {
   const handleLoginSubmit = ({ email, password }) => {
 
     login({ email, password })
-      .then(async (res) => {
-        if (res.ok) {
-          const data = await res.json();
-          localStorage.setItem("jwt", data.token);
-          setToken(data.token);
-          checkToken(data.token)
-            .then(async (userData) => {
-              const currentUser = await userData.json();
-              setCurrentUser(currentUser);
-              setIsLoggedIn(true);
-            });
-          return data;
-        }
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        setToken(data.token);
+        checkToken(data.token)
+          .then((currentUser) => {
+            setCurrentUser(currentUser);
+            setIsLoggedIn(true);
+          });
+        return data;
       })
       .then(() => {
         closeActiveModal();
@@ -254,14 +238,12 @@ function App() {
       .catch(console.error);
     const token = localStorage.getItem("jwt");
     setToken(token);
-    if (token?.length > 0) {
       checkToken(token)
-        .then(async (userData) => {
-          const currentUser = await userData.json();
+        .then((currentUser) => {
           setCurrentUser(currentUser);
           setIsLoggedIn(true);
-        });
-    }
+        })
+        .catch(console.error);
   }, []);
 
   return (

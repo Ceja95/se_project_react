@@ -45,7 +45,7 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
             handleSubmit={handleEditProfileSubmit}
         >
 
-            <label htmlFor="name" className="modal__label">
+            <label htmlFor="edit-profile-name" className="modal__label">
                 Name*
                 <input
                     type="text"
@@ -58,7 +58,7 @@ function EditProfileModal({ isOpen, closeActiveModal, closeOnOverlayClick, curre
                 />
             </label>
 
-            <label htmlFor="imageUrl" className="modal__label">
+            <label htmlFor="edit-profile-imageUrl" className="modal__label">
                 Avatar Image*
                 <input
                     type="url"
