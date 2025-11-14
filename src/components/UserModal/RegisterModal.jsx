@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRegister }) {
+function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRegister, onButtonNoteClick }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -52,9 +52,10 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             handleSubmit={handleRegisterSubmit}
+            onButtonNoteClick={onButtonNoteClick}
         >
 
-            <label htmlFor="email" className="modal__label">
+            <label htmlFor="register-email" className="modal__label">
                 Email*
                 <input
                     type="email"
@@ -67,7 +68,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 />
             </label>
 
-            <label htmlFor="password" className="modal__label">
+            <label htmlFor="register-password" className="modal__label">
                 Password*
                 <input
                     type="password"
@@ -80,7 +81,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 />
             </label>
 
-            <label htmlFor="name" className="modal__label">
+            <label htmlFor="register-name" className="modal__label">
                 Name*
                 <input
                     type="text"
@@ -93,7 +94,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 />
             </label>
 
-            <label htmlFor="imageUrl" className="modal__label">
+            <label htmlFor="register-imageUrl" className="modal__label">
                 Avatar Image*
                 <input
                     type="url"

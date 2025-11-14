@@ -66,6 +66,14 @@ function App() {
     setActiveModal("logout");
   };
 
+  const onLoginButtonNoteCLick = () => {
+    setActiveModal("login");
+  };
+
+  const onRegisterButtonNoteClick = () => {
+    setActiveModal("register");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -292,6 +300,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             handleRegister={handleRegisterSubmit}
+            onButtonNoteClick={loginClick}
           />
 
           <LoginModal
@@ -299,6 +308,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             handleLoginSubmit={handleLoginSubmit}
+            onButtonNoteClick={registerClick}
           />
 
           <LogOutModal

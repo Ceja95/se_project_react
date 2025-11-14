@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLoginSubmit }) {
+function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLoginSubmit, onButtonNoteClick }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -38,9 +38,10 @@ function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogin
             handleSubmit={handleLogin}
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
+            onButtonNoteClick={onButtonNoteClick}
         >
 
-            <label htmlFor="email" className="modal__label">
+            <label htmlFor="login-email" className="modal__label">
                 Email
                 <input
                     type="email"
@@ -53,7 +54,7 @@ function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogin
                 />
             </label>
 
-            <label htmlFor="password" className="modal__label">
+            <label htmlFor="login-password" className="modal__label">
                 Password
                 <input
                     type="password"
