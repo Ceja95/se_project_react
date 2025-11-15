@@ -55,7 +55,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
             onButtonNoteClick={onButtonNoteClick}
         >
 
-            <label htmlFor="register-email" className="modal__label">
+            <label className="modal__label">
                 Email*
                 <input
                     type="email"
@@ -68,7 +68,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 />
             </label>
 
-            <label htmlFor="register-password" className="modal__label">
+            <label className="modal__label">
                 Password*
                 <input
                     type="password"
@@ -81,7 +81,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 />
             </label>
 
-            <label htmlFor="register-name" className="modal__label">
+            <label className="modal__label">
                 Name*
                 <input
                     type="text"
@@ -94,7 +94,7 @@ function RegisterModal({ isOpen, closeOnOverlayClick, closeActiveModal, handleRe
                 />
             </label>
 
-            <label htmlFor="register-imageUrl" className="modal__label">
+            <label className="modal__label">
                 Avatar Image*
                 <input
                     type="url"

@@ -41,7 +41,7 @@ function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogin
             onButtonNoteClick={onButtonNoteClick}
         >
 
-            <label htmlFor="login-email" className="modal__label">
+            <label className="modal__label">
                 Email
                 <input
                     type="email"
@@ -54,7 +54,7 @@ function LoginModal({ isOpen, closeActiveModal, closeOnOverlayClick, handleLogin
                 />
             </label>
 
-            <label htmlFor="login-password" className="modal__label">
+            <label className="modal__label">
                 Password
                 <input
                     type="password"

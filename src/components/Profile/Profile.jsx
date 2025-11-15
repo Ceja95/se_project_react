@@ -1,8 +1,12 @@
+import { useContext } from "react";
+
 import "./Profile.css";
 import SideBar from "./SideBar/SideBar";
 import ClothesSection from "./ClothesSection/ClothesSection";
+import CurrentUserContext from "../../Context/CurrentUserContext";
 
-function Profile({handleCardClick, handleCardLike, handleDeleteItem, clothingItems, handleAddClick, editProfileClick, logoutClick, currentUser }) {
+function Profile({handleCardClick, handleCardLike, handleDeleteItem, clothingItems, handleAddClick, editProfileClick, logoutClick }) {
+    const currentUser = useContext(CurrentUserContext);
   
     return (
         <div className="profile">

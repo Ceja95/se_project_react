@@ -21,6 +21,7 @@ import LoginModal from "../UserModal/LoginModal";
 import { register, login, checkToken, updateUser } from "../../utils/auth";
 import EditProfileModal from "../EditProfile/EditProfileModal";
 import LogOutModal from "../UserModal/LogOutModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -246,12 +247,12 @@ function App() {
       .catch(console.error);
     const token = localStorage.getItem("jwt");
     setToken(token);
-      checkToken(token)
-        .then((currentUser) => {
-          setCurrentUser(currentUser);
-          setIsLoggedIn(true);
-        })
-        .catch(console.error);
+    checkToken(token)
+      .then((currentUser) => {
+        setCurrentUser(currentUser);
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -260,11 +261,11 @@ function App() {
       <div onClick={closeOnOverlayClick} className="page">
         <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
           <div className="page__content">
-            <Header currentUser={currentUser} handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
+            <Header handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
 
             <Routes>
-              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} currentUser={currentUser} />} />
-              <Route path="/profile" element={isLoggedIn ? (<Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} currentUser={currentUser} />) : (<Navigate to="/login" replace />)} />
+              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} />} />
+               <Route path="/profile" element={<ProtectedRoute isLoggedIn={isLoggedIn}> <Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} /> </ProtectedRoute>} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
 
@@ -284,7 +285,6 @@ function App() {
             isOpen={activeModal === "preview"}
             openConfirmationModal={openConfirmationModal}
             selectedCard={selectedCard}
-            currentUser={currentUser}
           />
 
           <ItemModalDelete
@@ -323,7 +323,6 @@ function App() {
             closeActiveModal={closeActiveModal}
             closeOnOverlayClick={closeOnOverlayClick}
             handleUpdateUser={handleUpdateUser}
-            currentUser={currentUser}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>
