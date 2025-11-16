@@ -264,7 +264,7 @@ function App() {
             <Header handleAddClick={handleAddClick} registerClick={registerClick} loginClick={loginClick} weatherData={weatherData} />
 
             <Routes>
-              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} />} />
+              <Route path="/" element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} handleCardLike={handleCardLike} isLoggedIn={isLoggedIn} />} />
                <Route path="/profile" element={<ProtectedRoute isLoggedIn={isLoggedIn}> <Profile handleCardClick={handleCardClick} handleCardLike={handleCardLike} handleDeleteItem={handleDeleteItem} clothingItems={clothingItems} handleAddClick={handleAddClick} editProfileClick={editProfileClick} logoutClick={logoutClick} /> </ProtectedRoute>} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

@@ -20,6 +20,7 @@ function ClothesSection({ handleCardClick, handleDeleteItem, clothingItems, hand
                 handleCardClick={handleCardClick}
                 handleDeleteItem={handleDeleteItem}
                 handleCardLike={handleCardLike}
+                isLoggedIn={true}
               />
             );
           })}
