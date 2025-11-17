@@ -23,16 +23,16 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onHandleAddItemSubmit({ name, imageUrl, weather});
+        onHandleAddItemSubmit({ name, imageUrl, weather });
     };
 
     useEffect(() => {
-            if (isOpen) {
-                setName("");
-                setImageUrl("");
-                setWeather("");
-            }   
-        }, [isOpen]);
+        if (isOpen) {
+            setName("");
+            setImageUrl("");
+            setWeather("");
+        }
+    }, [isOpen]);
 
     return (
         <ModalWithForm
@@ -43,7 +43,7 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
             closeOnOverlayClick={closeOnOverlayClick}
             handleSubmit={handleSubmit}
         >
-            <label htmlFor="name" className="modal__label">
+            <label className="modal__label">
                 Name
                 <input
                     type="text"
@@ -56,7 +56,8 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                 />
             </label>
 
-            <label htmlFor="imageUrl" className="modal__label">
+            <label
+                className="modal__label">
                 Image
                 <input
                     type="url"
@@ -72,7 +73,8 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
             <fieldset className="modal__radio-buttons">
                 <legend className="modal__legend">Select the weather type:</legend>
 
-                <label htmlFor="hot" className="modal__label modal__label_type_radio">
+                <label
+                    className="modal__label modal__label_type_radio">
                     <input
                         type="radio"
                         name="weather-type-select"
@@ -87,7 +89,6 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                 </label>
 
                 <label
-                    htmlFor="warm"
                     className="modal__label modal__label_type_radio"
                 >
                     <input
@@ -104,7 +105,6 @@ function AddItemModal({ isOpen, closeOnOverlayClick, closeActiveModal, onHandleA
                 </label>
 
                 <label
-                    htmlFor="cold"
                     className="modal__label modal__label_type_radio"
                 >
                     <input
