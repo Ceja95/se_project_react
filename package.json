@@ -2,7 +2,7 @@
   "name": "project_react",
   "private": true,
   "version": "0.0.0",
-  "homepage": "WWTWR.ignorelist.com",
+  "homepage": "https://WWTWR.ignorelist.com",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
