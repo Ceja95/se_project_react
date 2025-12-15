@@ -133,3 +133,8 @@ export const coordinates = {
 };
 
 export const APIkey = "2236f68d84d73282e5dbf6bfa77d1fa6";
+
+export const baseUrl = 
+  process.env.NODE_ENV === "production"
+    ? "https://api.www.WWTWR.ignorelist.com"
+    : "http://localhost:3001";

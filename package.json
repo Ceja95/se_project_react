@@ -2,12 +2,15 @@
   "name": "project_react",
   "private": true,
   "version": "0.0.0",
+  "homepage": "WWTWR.ignorelist.com",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "npm run dev && scp -r ./dist/* laracejaj@34.134.234.24:/home/laracejaj/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",

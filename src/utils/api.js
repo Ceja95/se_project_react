@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "./constants";
 
 export const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: $(res.status)`);
@@ -10,9 +10,8 @@ function getItems() {
     headers: {
       "Content-Type": "application/json",
     },
-  })
-  .then(checkResponse);
-};
+  }).then(checkResponse);
+}
 
 function createNewItem(item, token) {
   return fetch(`${baseUrl}/items`, {
@@ -22,9 +21,8 @@ function createNewItem(item, token) {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
-  })
-  .then(checkResponse);
-};
+  }).then(checkResponse);
+}
 
 function deleteItem(_id, token) {
   return fetch(`${baseUrl}/items/${_id}`, {
@@ -34,7 +32,7 @@ function deleteItem(_id, token) {
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
-};
+}
 
 function addCardLike(_id, token) {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
@@ -44,7 +42,7 @@ function addCardLike(_id, token) {
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
-};
+}
 
 function removeCardLike(_id, token) {
   return fetch(`${baseUrl}/items/${_id}/likes`, {
@@ -54,6 +52,6 @@ function removeCardLike(_id, token) {
       authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
-};
+}
 
 export { getItems, createNewItem, deleteItem, addCardLike, removeCardLike };
